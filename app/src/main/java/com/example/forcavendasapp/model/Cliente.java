@@ -6,17 +6,16 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String dtNasc;
-    private String codEndereco;
+    private Endereco endereco;
 
     public Cliente() {
     }
 
-    public Cliente(int codigo, String nome, String cpf, String dtNasc, String codEndereco) {
-        this.codigo = codigo;
+    public Cliente(String nome, String cpf, String dtNasc, Endereco endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.dtNasc = dtNasc;
-        this.codEndereco = codEndereco;
+        this.endereco = endereco;
     }
 
     public int getCodigo() {
@@ -51,11 +50,11 @@ public class Cliente {
         this.dtNasc = dtNasc;
     }
 
-    public String getCodEndereco() {
-        return codEndereco;
+    public Endereco getCodEndereco() {
+        return endereco;
     }
 
-    public void setCodEndereco(String codEndereco) {
-        this.codEndereco = codEndereco;
+    public void setCodEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }

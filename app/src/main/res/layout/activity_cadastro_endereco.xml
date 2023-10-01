@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.CadastroClienteActivity"
+    tools:context=".view.CadastroEnderecoActivity"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cadastro Cliente"
+        android:text="Cadastro Endereco"
         android:gravity="center"
         android:textStyle="bold"
         android:textSize="20dp"/>
@@ -28,57 +28,69 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nome:"/>
+                android:text="Logradouro:"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:id="@+id/edNome"/>
+                android:id="@+id/edLogradouro"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CPF:"/>
+                android:text="Número:"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:id="@+id/edCpf"/>
+                android:id="@+id/edNumero"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Data Nascimento:"/>
+                android:text="Bairro:"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:id="@+id/edDataNascimento"/>
+                android:id="@+id/edBairro"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Endereco:"/>
+                android:text="Cidade:"/>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:id="@+id/edCodEndereco"/>
+                android:id="@+id/edCidade"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UF:"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/edUf"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Salvar"
-                android:onClick="salvarCliente"
-                android:id="@+id/btSalvarCliente"/>
+                android:onClick="salvarEndereco"
+                android:id="@+id/btSalvarEndereco"/>
 
         </LinearLayout>
 
     </ScrollView>
+
 
 </LinearLayout>

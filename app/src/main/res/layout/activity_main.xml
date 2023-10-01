@@ -9,6 +9,16 @@
     tools:context=".view.MainActivity">
 
     <Button
+        android:id="@+id/btCadastrarEndereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_gravity="center"
+        android:onClick="cadastrarEndereco"
+        android:text="Cadastro Endereço" />
+
+    <Button
         android:id="@+id/btCadastrarCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

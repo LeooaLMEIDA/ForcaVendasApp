@@ -54,7 +54,7 @@ public class ClienteDao implements GenericDao<Cliente> {
             valores.put("NOME", obj.getNome());
             valores.put("CPF", obj.getCpf());
             valores.put("DTNASC", obj.getDtNasc());
-            valores.put("CODENDERECO", obj.getCodEndereco());
+            valores.put("CODENDERECO", obj.getCodEndereco().getCodigo());
 
             //Método para inserir na tabela(nome da tabela, coluna especifica que queira inserir, dados
             //Retorna a linha que foi inserida na tabela
@@ -110,7 +110,7 @@ public class ClienteDao implements GenericDao<Cliente> {
                     cliente.setNome(cursor.getString(1));
                     cliente.setCpf(cursor.getString(2));
                     cliente.setDtNasc(cursor.getString(3));
-                    cliente.setCodEndereco(cursor.getString(4));
+                    //cliente.setCodEndereco(cursor.getInt(4));
 
                     lista.add(cliente);
                 }while (cursor.moveToNext());
@@ -133,7 +133,7 @@ public class ClienteDao implements GenericDao<Cliente> {
                 cliente.setNome(cursor.getString(1));
                 cliente.setCpf(cursor.getString(2));
                 cliente.setDtNasc(cursor.getString(3));
-                cliente.setCodEndereco(cursor.getString(4));
+                //cliente.setCodEndereco(cursor.getInt(4));
 
                 return cliente;
             }
@@ -156,7 +156,7 @@ public class ClienteDao implements GenericDao<Cliente> {
                 cliente.setNome(cursor.getString(1));
                 cliente.setCpf(cursor.getString(2));
                 cliente.setDtNasc(cursor.getString(3));
-                cliente.setCodEndereco(cursor.getString(4));
+                //cliente.setCodEndereco(cursor.getInt(4));
 
                 return cliente;
             }

@@ -3,6 +3,7 @@ package com.example.forcavendasapp.controller;
 import android.content.Context;
 import com.example.forcavendasapp.dao.ClienteDao;
 import com.example.forcavendasapp.model.Cliente;
+import com.example.forcavendasapp.model.Endereco;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,8 @@ public class ClienteController {
         this.context = context;
     }
 
-    public long salvarCliente(Cliente cliente) {
+    public long salvarCliente(String nome, String cpf, String dtNasc, Endereco endereco) {
+        Cliente cliente = new Cliente(nome, cpf, dtNasc, endereco);
         return ClienteDao.getInstance(context).insert(cliente);
     }
 
@@ -33,13 +35,13 @@ public class ClienteController {
         return ClienteDao.getInstance(context).getByCpf(cpf);
     }
 
-    public String validaCliente(Cliente cliente){
+    public String validaCliente(String nome, String cpf, String dtNasc){
         String mensagem = "";
-        if(cliente.getNome() == null || cliente.getNome().isEmpty()){
+        if(nome == null || nome.isEmpty()){
             mensagem += "Nome do cliente deve ser informado.\n";
-        }else if(cliente.getCpf() == null || cliente.getCpf().isEmpty()) {
+        }else if(cpf == null || cpf.isEmpty()) {
             mensagem += "CPF do cliente deve ser informado.\n";
-        }else if(cliente.getDtNasc() == null || cliente.getDtNasc().isEmpty()) {
+        }else if(dtNasc == null || dtNasc.isEmpty()) {
             mensagem += "Data de Nascimento do cliente deve ser informado.\n";
         }
         return mensagem;
