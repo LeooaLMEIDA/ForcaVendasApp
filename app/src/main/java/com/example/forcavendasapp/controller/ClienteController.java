@@ -29,8 +29,21 @@ public class ClienteController {
         return ClienteDao.getInstance(context).getAll();
     }
 
-    public Cliente retornarCliente(int codigo) {
-        return ClienteDao.getInstance(context).getById(codigo);
+    public Cliente retornarCliente(String cpf) {
+        return ClienteDao.getInstance(context).getByCpf(cpf);
     }
+
+    public String validaCliente(Cliente cliente){
+        String mensagem = "";
+        if(cliente.getNome() == null || cliente.getNome().isEmpty()){
+            mensagem += "Nome do cliente deve ser informado.\n";
+        }else if(cliente.getCpf() == null || cliente.getCpf().isEmpty()) {
+            mensagem += "CPF do cliente deve ser informado.\n";
+        }else if(cliente.getDtNasc() == null || cliente.getDtNasc().isEmpty()) {
+            mensagem += "Data de Nascimento do cliente deve ser informado.\n";
+        }
+        return mensagem;
+    }
+
 
 }

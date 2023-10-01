@@ -12,10 +12,13 @@
         android:theme="@style/Theme.ForcaVendasApp"
         tools:targetApi="31">
         <activity
-            android:name=".CadastroCliente"
+            android:name=".view.ListaClienteActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".view.CadastroClienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.bancodadosexemplo.helper.SQLiteDataHelper;
+import com.example.forcavendasapp.helper.SQLiteDataHelper;
 import com.example.forcavendasapp.model.Cliente;
 
 import java.util.ArrayList;
@@ -29,11 +29,6 @@ public class ClienteDao implements GenericDao<Cliente> {
     private Context context;
 
     private static ClienteDao instancia;
-
-    /**
-     * Método que CRIA a instância uma única vez
-     * Toda vez que for necessário utilizar essa classe
-     * Irá retornar sempre a mesma instância*/
 
     public static ClienteDao getInstance(Context context){
         if (instancia == null)
@@ -124,6 +119,28 @@ public class ClienteDao implements GenericDao<Cliente> {
             Log.e("ERRO", "ClienteDao.getAll(): " + ex.getMessage());
         }
         return lista;
+    }
+
+    public Cliente getByCpf(String id) {
+        try {
+            String[]identificador = {String.valueOf(id)};
+
+            Cursor cursor = bd.query(tableName, colunas, "CPF = ?",
+                    identificador, null, null, null);
+            if (cursor.moveToFirst()){
+                Cliente cliente = new Cliente();
+                cliente.setCodigo(cursor.getInt(0));
+                cliente.setNome(cursor.getString(1));
+                cliente.setCpf(cursor.getString(2));
+                cliente.setDtNasc(cursor.getString(3));
+                cliente.setCodEndereco(cursor.getString(4));
+
+                return cliente;
+            }
+        }catch (SQLException ex) {
+            Log.e("ERRO", "ClienteDao.getId(): " + ex.getMessage());
+        }
+        return null;
     }
 
     @Override
