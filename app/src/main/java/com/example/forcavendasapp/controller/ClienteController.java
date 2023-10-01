@@ -19,7 +19,8 @@ public class ClienteController {
         return ClienteDao.getInstance(context).insert(cliente);
     }
 
-    public long atualizaAluno(Cliente cliente) {
+    public long atualizaAluno(String nome, String cpf, String dtNasc, Endereco endereco) {
+        Cliente cliente = new Cliente(nome, cpf, dtNasc, endereco);
         return ClienteDao.getInstance(context).update(cliente);
     }
 

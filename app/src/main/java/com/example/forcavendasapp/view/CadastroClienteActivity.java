@@ -70,7 +70,7 @@ public class CadastroClienteActivity extends AppCompatActivity {
                 edDataNascimento.setError(validacao);
             }
         }else{
-            Endereco endereco = new Endereco("Rua Atilio de Bona", "234",
+            Endereco endereco = new Endereco(1,"Rua Atilio de Bona", "234",
                     "Santa Clara 3","Toledo","PR");
             if(clienteController.salvarCliente(
                     edNome.getText().toString(),

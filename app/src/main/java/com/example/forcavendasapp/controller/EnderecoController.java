@@ -16,11 +16,15 @@ public class EnderecoController {
         this.context = context;
     }
 
-    public long salvarEndereco(Endereco endereco) {
+    public long salvarEndereco(int codigo, String logradouro, String numero,
+                               String bairro, String cidade, String uf) {
+        Endereco endereco = new Endereco(codigo,logradouro, numero, bairro, cidade, uf);
         return EnderecoDao.getInstance(context).insert(endereco);
     }
 
-    public long atualizaAluno(Endereco endereco) {
+    public long atualizaAluno(int codigo, String logradouro, String numero,
+                              String bairro, String cidade, String uf) {
+        Endereco endereco = new Endereco(codigo, logradouro, numero, bairro, cidade, uf);
         return EnderecoDao.getInstance(context).update(endereco);
     }
 
@@ -36,5 +40,22 @@ public class EnderecoController {
         return EnderecoDao.getInstance(context).getById(codigo);
     }
 
+    public String validaEndereco(int codigo, String logradouro, String numero,
+                                 String bairro, String cidade, String uf) {
+        String mensagem = "";
 
+        if(logradouro == null || logradouro.isEmpty()){
+            mensagem += "O Logradouro deve ser informado.\n";
+        }else if(numero == null || numero.isEmpty()) {
+            mensagem += "O Número deve ser informado.\n";
+        }else if(bairro == null || bairro.isEmpty()) {
+            mensagem += "O Bairro deve ser informado.\n";
+        }else if(cidade == null || cidade.isEmpty()) {
+            mensagem += "A Cidade deve ser informado.\n";
+        }else if(uf == null || uf.isEmpty()) {
+            mensagem += "A UF deve ser informado.\n";
+        }
+
+        return mensagem;
+    }
 }

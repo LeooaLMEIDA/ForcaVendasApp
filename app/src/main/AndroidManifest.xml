@@ -12,7 +12,7 @@
         android:theme="@style/Theme.ForcaVendasApp"
         tools:targetApi="31">
         <activity
-            android:name=".ListaEnderecoActivity"
+            android:name=".view.ListaEnderecoActivity"
             android:exported="false" />
         <activity
             android:name=".view.CadastroEnderecoActivity"
