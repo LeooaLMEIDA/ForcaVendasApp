@@ -35,8 +35,8 @@ public class ClienteListAdapter extends RecyclerView.Adapter<ClienteListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvNomeCliente.setText(String.valueOf(listaClientes.get(position).getNome()));
-        holder.tvCpfCliente.setText(String.valueOf(listaClientes.get(position).getCpf()));
-        holder.tvDtNascCliente.setText(String.valueOf(listaClientes.get(position).getDtNasc()));
+//        holder.tvCpfCliente.setText(String.valueOf(listaClientes.get(position).getCpf()));
+//        holder.tvDtNascCliente.setText(String.valueOf(listaClientes.get(position).getDtNasc()));
     }
 
     @Override
@@ -47,8 +47,8 @@ public class ClienteListAdapter extends RecyclerView.Adapter<ClienteListAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView tvNomeCliente;
-        public TextView tvCpfCliente;
-        public TextView tvDtNascCliente;
+//        public TextView tvCpfCliente;
+//        public TextView tvDtNascCliente;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

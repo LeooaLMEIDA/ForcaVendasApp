@@ -34,11 +34,11 @@ public class EnderecoListAdapter extends RecyclerView.Adapter<EnderecoListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvLogradouro.setText(String.valueOf(listaEnderecos.get(position).getLogradouro()));
+        holder.tvLogradouro.setText(listaEnderecos.get(position).getLogradouro());
         holder.tvNumero.setText(String.valueOf(listaEnderecos.get(position).getNumero()));
-        holder.tvBairro.setText(String.valueOf(listaEnderecos.get(position).getBairro()));
-        holder.tvCidade.setText(String.valueOf(listaEnderecos.get(position).getCidade()));
-        holder.tvUf.setText(String.valueOf(listaEnderecos.get(position).getUf()));
+//        holder.tvBairro.setText(String.valueOf(listaEnderecos.get(position).getBairro()));
+//        holder.tvCidade.setText(String.valueOf(listaEnderecos.get(position).getCidade()));
+//        holder.tvUf.setText(String.valueOf(listaEnderecos.get(position).getUf()));
     }
 
     @Override
@@ -50,12 +50,15 @@ public class EnderecoListAdapter extends RecyclerView.Adapter<EnderecoListAdapte
 
         public TextView tvLogradouro;
         public TextView tvNumero;
-        public TextView tvBairro;
-        public TextView tvCidade;
-        public TextView tvUf;
+//        public TextView tvBairro;
+//        public TextView tvCidade;
+//        public TextView tvUf;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            this.tvLogradouro = itemView.findViewById(R.id.tvLogradouro);
+            this.tvNumero = itemView.findViewById(R.id.tvNumero);
 
         }
     }
