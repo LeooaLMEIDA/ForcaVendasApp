@@ -3,6 +3,7 @@ package com.example.forcavendasapp.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -110,8 +111,14 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
                         "Erro ao cadastrar Endereco, verifique o LOG.",
                         Toast.LENGTH_LONG).show();
             }
+            voltarTelaListagem();
         }
     }
+    private void voltarTelaListagem() {
+        Intent intent = new Intent(CadastroEnderecoActivity.this, ListaEnderecoActivity.class);
+        startActivity(intent);
+    }
+
 }
 
 
