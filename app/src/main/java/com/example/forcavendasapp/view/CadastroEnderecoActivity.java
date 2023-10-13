@@ -45,7 +45,7 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
         edCidade = findViewById(R.id.edCidade);
         edUf = findViewById(R.id.edUf);
         btSalvarEndereco = findViewById(R.id.btSalvarEndereco);
-        
+
         btSalvarEndereco.setOnClickListener(view -> salvarEndereco());
 
     }
@@ -80,14 +80,14 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
 
         Log.d("VALIDATION", "Resultado da validação: " + validacao);
 
-        if(!validacao.equals("")){
+        if (!validacao.equals("")) {
             if (validacao.contains("Código")) {
                 edCodigo.setError(validacao);
             }
-            if (validacao.contains("Logradouro")){
+            if (validacao.contains("Logradouro")) {
                 edLogradouro.setError(validacao);
             }
-            if (validacao.contains("Número")){
+            if (validacao.contains("Número")) {
                 edNumero.setError(validacao);
             }
             if (validacao.contains("Bairro")) {
@@ -99,8 +99,8 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
             if (validacao.contains("Uf")) {
                 edUf.setError(validacao);
             }
-        }else{
-            if(enderecoController.salvarEndereco(
+        } else {
+            if (enderecoController.salvarEndereco(
                     Integer.parseInt(edCodigo.getText().toString()),
                     edLogradouro.getText().toString(),
                     edNumero.getText().toString(),
@@ -110,7 +110,7 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
                 Toast.makeText(this,
                         "Endereco cadastrado com sucesso!",
                         Toast.LENGTH_LONG).show();
-            }else{
+            } else {
                 Toast.makeText(this,
                         "Erro ao cadastrar Endereco, verifique o LOG.",
                         Toast.LENGTH_LONG).show();
@@ -118,6 +118,7 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
             voltarTelaListagem();
         }
     }
+
     private void voltarTelaListagem() {
         Intent intent = new Intent(CadastroEnderecoActivity.this, ListaEnderecoActivity.class);
         startActivity(intent);

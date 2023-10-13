@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.example.forcavendasapp.R;
 import com.example.forcavendasapp.controller.ClienteController;
 import com.example.forcavendasapp.model.Cliente;
@@ -59,33 +61,38 @@ public class CadastroClienteActivity extends AppCompatActivity {
                 edDataNascimento.getText().toString()
         );
 
-        if(!validacao.equals("")){
-            if (validacao.contains("Nome")){
+        if (!validacao.equals("")) {
+            if (validacao.contains("Nome")) {
                 edNome.setError(validacao);
             }
-            if (validacao.contains("Cpf")){
+            if (validacao.contains("Cpf")) {
                 edCpf.setError(validacao);
             }
             if (validacao.contains("Data")) {
                 edDataNascimento.setError(validacao);
             }
-        }else{
-            Endereco endereco = new Endereco(1,"Rua Atilio de Bona", "234",
-                    "Santa Clara 3","Toledo","PR");
-            if(clienteController.salvarCliente(
+        } else {
+            Endereco endereco = new Endereco(1, "Rua Atilio de Bona", "234",
+                    "Santa Clara 3", "Toledo", "PR");
+            if (clienteController.salvarCliente(
                     edNome.getText().toString(),
                     edCpf.getText().toString(),
                     edDataNascimento.getText().toString(),
-                    endereco
-            ) > 0) {
+                    endereco) > 0) {
                 Toast.makeText(this,
                         "Cliente cadastrado com sucesso!",
                         Toast.LENGTH_LONG).show();
-            }else{
+            } else {
                 Toast.makeText(this,
                         "Erro ao cadastrar Aluno, verifique LOG.",
                         Toast.LENGTH_LONG).show();
             }
         }
+        voltarTelaListagem();
+    }
+
+    private void voltarTelaListagem() {
+        Intent intent = new Intent(CadastroClienteActivity.this, ListaClienteActivity.class);
+        startActivity(intent);
     }
 }

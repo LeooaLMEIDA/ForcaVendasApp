@@ -1,6 +1,7 @@
 package com.example.forcavendasapp.controller;
 
 import android.content.Context;
+
 import com.example.forcavendasapp.dao.ClienteDao;
 import com.example.forcavendasapp.model.Cliente;
 import com.example.forcavendasapp.model.Endereco;
@@ -36,17 +37,22 @@ public class ClienteController {
         return ClienteDao.getInstance(context).getByCpf(cpf);
     }
 
-    public String validaCliente(String nome, String cpf, String dtNasc){
-        String mensagem = "";
-        if(nome == null || nome.isEmpty()){
-            mensagem += "Nome do cliente deve ser informado.\n";
-        }else if(cpf == null || cpf.isEmpty()) {
-            mensagem += "CPF do cliente deve ser informado.\n";
-        }else if(dtNasc == null || dtNasc.isEmpty()) {
-            mensagem += "Data de Nascimento do cliente deve ser informado.\n";
+    public String validaCliente(String nome, String cpf, String dtNasc) {
+        StringBuilder mensagem = new StringBuilder();
+        if (isEmpty(nome)) {
+            mensagem.append("Nome do cliente deve ser informado.\n");
         }
-        return mensagem;
+        if (isEmpty(cpf)) {
+            mensagem.append("CPF do cliente deve ser informado.\n");
+        }
+        if (isEmpty(dtNasc)) {
+            mensagem.append("Data de Nascimento do cliente deve ser informado.\n");
+        }
+        return mensagem.toString();
     }
 
 
+    private boolean isEmpty(String value) {
+        return value == null || value.trim().isEmpty();
+    }
 }
