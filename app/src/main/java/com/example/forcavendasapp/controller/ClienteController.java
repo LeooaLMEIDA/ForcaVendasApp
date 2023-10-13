@@ -51,7 +51,6 @@ public class ClienteController {
         return mensagem.toString();
     }
 
-
     private boolean isEmpty(String value) {
         return value == null || value.trim().isEmpty();
     }

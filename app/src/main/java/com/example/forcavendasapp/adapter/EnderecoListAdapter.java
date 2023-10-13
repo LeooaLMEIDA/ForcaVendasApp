@@ -34,6 +34,7 @@ public class EnderecoListAdapter extends RecyclerView.Adapter<EnderecoListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.tvCodigo.setText(String.valueOf(listaEnderecos.get(position).getCodigo()));
         holder.tvLogradouro.setText(listaEnderecos.get(position).getLogradouro());
         holder.tvNumero.setText(String.valueOf(listaEnderecos.get(position).getNumero()));
 //        holder.tvBairro.setText(String.valueOf(listaEnderecos.get(position).getBairro()));
@@ -48,6 +49,7 @@ public class EnderecoListAdapter extends RecyclerView.Adapter<EnderecoListAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        public TextView tvCodigo;
         public TextView tvLogradouro;
         public TextView tvNumero;
 //        public TextView tvBairro;
@@ -57,6 +59,7 @@ public class EnderecoListAdapter extends RecyclerView.Adapter<EnderecoListAdapte
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            this.tvCodigo = itemView.findViewById(R.id.tvCodigo);
             this.tvLogradouro = itemView.findViewById(R.id.tvLogradouro);
             this.tvNumero = itemView.findViewById(R.id.tvNumero);
 

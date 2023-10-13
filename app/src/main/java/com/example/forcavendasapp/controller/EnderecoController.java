@@ -50,7 +50,7 @@ public class EnderecoController {
             int codigoEndereco = Integer.parseInt(codigo);
             Endereco enderecoExistente = EnderecoDao.getInstance(context).getById(codigoEndereco);
             if (enderecoExistente != null) {
-                mensagem.append("Já existe um endereço com o código informado.\n");
+                mensagem.append("Já existe um endereço com o Código informado.\n");
             }
         }
         if (isEmpty(logradouro)) {

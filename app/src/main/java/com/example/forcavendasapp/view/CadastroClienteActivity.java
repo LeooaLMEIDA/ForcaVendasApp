@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.forcavendasapp.R;
 import com.example.forcavendasapp.controller.ClienteController;
+import com.example.forcavendasapp.controller.EnderecoController;
 import com.example.forcavendasapp.model.Cliente;
 import com.example.forcavendasapp.model.Endereco;
 
@@ -24,8 +26,15 @@ public class CadastroClienteActivity extends AppCompatActivity {
     private EditText edCpf;
     private EditText edDataNascimento;
     private EditText edCodEndereco;
+    private EditText edLogradouro;
+    private EditText edNumero;
+    private EditText edBairro;
+    private EditText edCidade;
+    private EditText edUf;
     private Button btSalvarCliente;
     private ClienteController clienteController;
+
+    private EnderecoController enderecoController;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -39,10 +48,22 @@ public class CadastroClienteActivity extends AppCompatActivity {
         edCpf = findViewById(R.id.edCpf);
         edDataNascimento = findViewById(R.id.edDataNascimento);
         edCodEndereco = findViewById(R.id.edCodEndereco);
+        edLogradouro = findViewById(R.id.edLogradouro);
+        edNumero = findViewById(R.id.edNumero);
+        edBairro = findViewById(R.id.edBairro);
+        edCidade = findViewById(R.id.edCidade);
+        edUf = findViewById(R.id.edUf);
+
         btSalvarCliente = findViewById(R.id.btSalvarCliente);
 
-        btSalvarCliente.setOnClickListener(view -> salvarCliente());
+        edCodEndereco.setOnFocusChangeListener((view, focoNoCampo) -> {
+            String codEndereco = String.valueOf(edCodEndereco.getText());
+            if (!focoNoCampo) {
+                preencheEndereco(Integer.parseInt(codEndereco));
+            }
+        });
 
+        btSalvarCliente.setOnClickListener(view -> salvarCliente());
     }
 
     @Override
@@ -72,8 +93,16 @@ public class CadastroClienteActivity extends AppCompatActivity {
                 edDataNascimento.setError(validacao);
             }
         } else {
-            Endereco endereco = new Endereco(1, "Rua Atilio de Bona", "234",
-                    "Santa Clara 3", "Toledo", "PR");
+            clienteController = new ClienteController(this);
+            String codEndereco = String.valueOf(edCodEndereco.getText());
+            String logradouro = String.valueOf(edLogradouro.getText());
+            String numero = String.valueOf(edNumero.getText());
+            String bairro = String.valueOf(edBairro.getText());
+            String cidade = String.valueOf(edCidade.getText());
+            String uf = String.valueOf(edUf.getText());
+
+            Endereco endereco = new Endereco(Integer.parseInt(codEndereco), logradouro, numero,
+                    bairro, cidade, uf);
             if (clienteController.salvarCliente(
                     edNome.getText().toString(),
                     edCpf.getText().toString(),
@@ -94,5 +123,17 @@ public class CadastroClienteActivity extends AppCompatActivity {
     private void voltarTelaListagem() {
         Intent intent = new Intent(CadastroClienteActivity.this, ListaClienteActivity.class);
         startActivity(intent);
+    }
+
+    private void preencheEndereco(int codigo) {
+        enderecoController = new EnderecoController(this);
+        Endereco endereco = enderecoController.retornarEndereco(codigo);
+        edLogradouro.setText(endereco.getLogradouro());
+        edNumero.setText(endereco.getNumero());
+        edBairro.setText(endereco.getBairro());
+        edCidade.setText(endereco.getCidade());
+        edUf.setText(endereco.getUf());
+
+
     }
 }
