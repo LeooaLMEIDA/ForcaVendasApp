@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -68,13 +69,16 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
 
     private void salvarEndereco() {
         String validacao = enderecoController.validaEndereco(
-                Integer.parseInt(edCodigo.getText().toString()),
+                edCodigo.getText().toString(),
                 edLogradouro.getText().toString(),
                 edNumero.getText().toString(),
                 edBairro.getText().toString(),
                 edCidade.getText().toString(),
                 edUf.getText().toString()
         );
+
+
+        Log.d("VALIDATION", "Resultado da validação: " + validacao);
 
         if(!validacao.equals("")){
             if (validacao.contains("Codigo")) {
