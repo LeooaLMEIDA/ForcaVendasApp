@@ -21,7 +21,7 @@ public class ClienteDao implements GenericDao<Cliente> {
     private SQLiteDatabase bd;
 
     //Nome das Colunas na Tabela;
-    private String[]colunas = {"CODIGO", "NOME", "CPF", "DTNASC", "CODENDERECO"};
+    private String[]colunas = {"CODIGO", "NOME", "CPF", "DT_NASC", "COD_ENDERECO"};
 
     //Nome da Tabela;
     private String tableName = "CLIENTE";
@@ -53,8 +53,8 @@ public class ClienteDao implements GenericDao<Cliente> {
             valores.put("CODIGO", obj.getCodigo());
             valores.put("NOME", obj.getNome());
             valores.put("CPF", obj.getCpf());
-            valores.put("DTNASC", obj.getDtNasc());
-            valores.put("CODENDERECO", obj.getCodEndereco().getCodigo());
+            valores.put("DT_NASC", obj.getDtNasc());
+            valores.put("COD_ENDERECO", obj.getCodEndereco().getCodigo());
 
             //Método para inserir na tabela(nome da tabela, coluna especifica que queira inserir, dados
             //Retorna a linha que foi inserida na tabela

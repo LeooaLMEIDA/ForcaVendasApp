@@ -1,9 +1,11 @@
 package com.example.forcavendasapp.view;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -128,12 +130,24 @@ public class CadastroClienteActivity extends AppCompatActivity {
     private void preencheEndereco(int codigo) {
         enderecoController = new EnderecoController(this);
         Endereco endereco = enderecoController.retornarEndereco(codigo);
-        edLogradouro.setText(endereco.getLogradouro());
-        edNumero.setText(endereco.getNumero());
-        edBairro.setText(endereco.getBairro());
-        edCidade.setText(endereco.getCidade());
-        edUf.setText(endereco.getUf());
+        if (endereco != null) {
+            edLogradouro.setText(endereco.getLogradouro());
+            edNumero.setText(endereco.getNumero());
+            edBairro.setText(endereco.getBairro());
+            edCidade.setText(endereco.getCidade());
+            edUf.setText(endereco.getUf());
+        } else {
+            exibirPopup("Endereço Inválido", "Verifique se o Endereço informado " +
+                    "foi cadastrado na etapa anterior.");
+        }
 
-
+    }
+    public void exibirPopup(String titulo, String mensagem){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(titulo)
+                .setMessage(mensagem)
+                .setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
