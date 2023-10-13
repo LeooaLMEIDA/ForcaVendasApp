@@ -81,7 +81,7 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
         Log.d("VALIDATION", "Resultado da validação: " + validacao);
 
         if(!validacao.equals("")){
-            if (validacao.contains("Codigo")) {
+            if (validacao.contains("Código")) {
                 edCodigo.setError(validacao);
             }
             if (validacao.contains("Logradouro")){

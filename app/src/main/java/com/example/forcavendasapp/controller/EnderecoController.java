@@ -46,6 +46,12 @@ public class EnderecoController {
 
         if (isEmpty(codigo)) {
             mensagem.append("O Código deve ser informado.\n");
+        }else {
+            int codigoEndereco = Integer.parseInt(codigo);
+            Endereco enderecoExistente = EnderecoDao.getInstance(context).getById(codigoEndereco);
+            if (enderecoExistente != null) {
+                mensagem.append("Já existe um endereço com o código informado.\n");
+            }
         }
         if (isEmpty(logradouro)) {
             mensagem.append("O Logradouro deve ser informado.\n");
