@@ -22,7 +22,6 @@ public class CadastroItemActivity extends AppCompatActivity {
     private Button btSalvarItem;
     private ItemController itemController;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

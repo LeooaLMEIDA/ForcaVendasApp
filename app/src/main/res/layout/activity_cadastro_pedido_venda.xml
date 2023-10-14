@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.CadastroPedidoVendaActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".view.CadastroPedidoVendaActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cadastro Pedido Venda"
         android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="20dp"/>
+        android:text="Cadastro Pedido Venda"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,88 +22,136 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Código:"/>
+                android:text="Código:" />
 
             <EditText
+                android:id="@+id/edCodigo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:id="@+id/edCodigo"/>
+                android:layout_margin="10dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Cliente:"/>
+                android:text="Cliente:" />
 
             <Spinner
+                android:id="@+id/spClientes"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spCliente">
-            </Spinner>
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Condição Pagamento:"/>
+                android:text="Itens:" />
 
             <Spinner
+                android:id="@+id/spItens"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spCondPagto">
-            </Spinner>
+                android:layout_height="wrap_content"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="185dp"
+                android:id="@+id/lvItens"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Valor Frete:"/>
+                android:text="Condição Pagamento:" />
 
-            <EditText
+            <RadioGroup
+                android:id="@+id/rgFormasPagamentos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:id="@+id/edValorFrete"/>
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdAvista"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="À Vista" />
+
+                <RadioButton
+                    android:id="@+id/rdParcelado"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Parcelado" />
+            </RadioGroup>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Quantidade:"/>
+                android:id="@+id/tvQtdParcelas"
+                android:text="Quantidade de Parcelas:" />
 
             <EditText
+                android:id="@+id/edQuantidadeParcelas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:id="@+id/edQuantidade"/>
+                android:inputType="number" />
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Valor Total:"/>
+                android:text="Valor Frete:" />
 
             <EditText
+                android:id="@+id/edValorFrete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:id="@+id/edValorTotal"/>
+                android:inputType="numberDecimal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Quantidade:" />
+
+            <EditText
+                android:id="@+id/edQuantidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Valor Total:" />
+
+            <EditText
+                android:id="@+id/edValorTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:inputType="numberDecimal"/>
 
             <Button
+                android:id="@+id/btSalvarPedidoVenda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Salvar"
                 android:onClick="salvarPedidoVenda"
-                android:id="@+id/btSalvarPedidoVenda"/>
+                android:text="Salvar" />
 
         </LinearLayout>
 
