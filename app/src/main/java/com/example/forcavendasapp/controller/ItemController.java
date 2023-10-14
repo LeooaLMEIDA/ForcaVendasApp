@@ -19,11 +19,11 @@ public class ItemController {
         return ItemDao.getInstance(context).insert(item);
     }
 
-    public long atualizaAluno(Item item) {
+    public long atualizaItem(Item item) {
         return ItemDao.getInstance(context).update(item);
     }
 
-    public long apagarAluno(Item item) {
+    public long apagarItem(Item item) {
         return ItemDao.getInstance(context).update(item);
     }
 

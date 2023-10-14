@@ -38,4 +38,14 @@
         android:onClick="cadastrarItem"
         android:text="Cadastro Item" />
 
+    <Button
+        android:id="@+id/btCadastrarPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_gravity="center"
+        android:onClick="cadastrarPedido"
+        android:text="Cadastro Pedido" />
+
 </LinearLayout>

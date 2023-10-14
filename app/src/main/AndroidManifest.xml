@@ -12,7 +12,10 @@
         android:theme="@style/Theme.ForcaVendasApp"
         tools:targetApi="31">
         <activity
-            android:name=".view.PedidoVendaActivity"
+            android:name=".view.ListaPedidoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.CadastroPedidoVendaActivity"
             android:exported="false" />
         <activity
             android:name=".view.CadastroItemActivity"
