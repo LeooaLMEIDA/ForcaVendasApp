@@ -52,7 +52,6 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        /****Carrega o layout do menu*/
         MenuInflater mnInflater = getMenuInflater();
         mnInflater.inflate(R.menu.menu_padrao, menu);
         return super.onCreateOptionsMenu(menu);
@@ -76,9 +75,6 @@ public class CadastroEnderecoActivity extends AppCompatActivity {
                 edCidade.getText().toString(),
                 edUf.getText().toString()
         );
-
-
-        Log.d("VALIDATION", "Resultado da validação: " + validacao);
 
         if (!validacao.equals("")) {
             if (validacao.contains("Código")) {

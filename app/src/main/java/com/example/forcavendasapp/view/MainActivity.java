@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btCadastrarCliente;
     private Button btCadastrarEndereco;
+    private Button btCadastrarItem;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         btCadastrarEndereco = findViewById(R.id.btCadastrarEndereco);
         btCadastrarEndereco.setOnClickListener(view -> abrirActivityEndereco());
 
+        btCadastrarItem = findViewById(R.id.btCadastrarItem);
+        btCadastrarItem.setOnClickListener(view -> abrirActivityItem());
+
     }
 
     public void abrirActivityCliente(){
@@ -38,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
     public void abrirActivityEndereco(){
         Intent intent = new Intent(MainActivity.this,
                 ListaEnderecoActivity.class);
+
+        startActivity(intent);
+    }
+
+    public void abrirActivityItem(){
+        Intent intent = new Intent(MainActivity.this,
+                ListaItemActivity.class);
 
         startActivity(intent);
     }

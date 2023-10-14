@@ -37,7 +37,7 @@ public class ClienteController {
         return ClienteDao.getInstance(context).getByCpf(cpf);
     }
 
-    public String validaCliente(String nome, String cpf, String dtNasc) {
+    public String validaCliente(String nome, String cpf, String dtNasc, Endereco endereco) {
         StringBuilder mensagem = new StringBuilder();
         if (isEmpty(nome)) {
             mensagem.append("Nome do cliente deve ser informado.\n");

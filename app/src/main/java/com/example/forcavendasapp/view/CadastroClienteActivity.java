@@ -23,7 +23,6 @@ import com.example.forcavendasapp.model.Endereco;
 
 public class CadastroClienteActivity extends AppCompatActivity {
 
-    private EditText edCodigo;
     private EditText edNome;
     private EditText edCpf;
     private EditText edDataNascimento;
@@ -45,6 +44,8 @@ public class CadastroClienteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_cliente);
 
         setTitle("Cadastrar Cliente");
+
+        clienteController = new ClienteController(this);
 
         edNome = findViewById(R.id.edNome);
         edCpf = findViewById(R.id.edCpf);
@@ -78,10 +79,21 @@ public class CadastroClienteActivity extends AppCompatActivity {
     }
 
     private void salvarCliente() {
+
+        String codEndereco = String.valueOf(edCodEndereco.getText());
+        String logradouro = String.valueOf(edLogradouro.getText());
+        String numero = String.valueOf(edNumero.getText());
+        String bairro = String.valueOf(edBairro.getText());
+        String cidade = String.valueOf(edCidade.getText());
+        String uf = String.valueOf(edUf.getText());
+
+        Endereco endereco = new Endereco(Integer.parseInt(codEndereco),logradouro,numero,bairro,cidade,uf);
+
         String validacao = clienteController.validaCliente(
                 edNome.getText().toString(),
                 edCpf.getText().toString(),
-                edDataNascimento.getText().toString()
+                edDataNascimento.getText().toString(),
+                endereco
         );
 
         if (!validacao.equals("")) {
@@ -94,17 +106,10 @@ public class CadastroClienteActivity extends AppCompatActivity {
             if (validacao.contains("Data")) {
                 edDataNascimento.setError(validacao);
             }
+            if (validacao.contains("Endereco")) {
+                edCodEndereco.setError(validacao);
+            }
         } else {
-            clienteController = new ClienteController(this);
-            String codEndereco = String.valueOf(edCodEndereco.getText());
-            String logradouro = String.valueOf(edLogradouro.getText());
-            String numero = String.valueOf(edNumero.getText());
-            String bairro = String.valueOf(edBairro.getText());
-            String cidade = String.valueOf(edCidade.getText());
-            String uf = String.valueOf(edUf.getText());
-
-            Endereco endereco = new Endereco(Integer.parseInt(codEndereco), logradouro, numero,
-                    bairro, cidade, uf);
             if (clienteController.salvarCliente(
                     edNome.getText().toString(),
                     edCpf.getText().toString(),
@@ -131,6 +136,7 @@ public class CadastroClienteActivity extends AppCompatActivity {
         enderecoController = new EnderecoController(this);
         Endereco endereco = enderecoController.retornarEndereco(codigo);
         if (endereco != null) {
+            Log.d("PREENCHEENDERECO", "Resultado da validação: " + endereco);
             edLogradouro.setText(endereco.getLogradouro());
             edNumero.setText(endereco.getNumero());
             edBairro.setText(endereco.getBairro());

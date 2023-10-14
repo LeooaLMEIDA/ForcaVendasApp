@@ -15,7 +15,6 @@ import com.example.forcavendasapp.model.Cliente;
 import java.util.ArrayList;
 
 public class ClienteListAdapter extends RecyclerView.Adapter<ClienteListAdapter.ViewHolder> {
-
     private ArrayList<Cliente> listaClientes;
     private Context context;
 
@@ -52,7 +51,7 @@ public class ClienteListAdapter extends RecyclerView.Adapter<ClienteListAdapter.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            this.tvNomeCliente = itemView.findViewById(R.id.tvNomeCliente);
         }
     }
 
