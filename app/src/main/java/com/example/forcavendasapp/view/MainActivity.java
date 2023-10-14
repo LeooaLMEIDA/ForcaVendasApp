@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btCadastrarItem;
     private Button btCadastrarPedido;
 
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

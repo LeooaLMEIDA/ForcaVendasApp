@@ -10,44 +10,45 @@ import android.os.Bundle;
 
 import com.example.forcavendasapp.R;
 import com.example.forcavendasapp.adapter.ItemListAdapter;
+import com.example.forcavendasapp.adapter.PedidoListAdapter;
 import com.example.forcavendasapp.controller.ItemController;
 import com.example.forcavendasapp.controller.PedidoController;
 import com.example.forcavendasapp.model.Item;
+import com.example.forcavendasapp.model.PedidoVenda;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 public class ListaPedidoActivity extends AppCompatActivity {
-
-    private PedidoController itemController;
-    private RecyclerView rvItens;
-    private FloatingActionButton btNovoItem;
+    private PedidoController pedidoController;
+    private RecyclerView rvPedidos;
+    private FloatingActionButton btNovoPedido;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_item);
+        setContentView(R.layout.activity_lista_pedido);
 
-        itemController = new ItemController(this);
-        rvItens = findViewById(R.id.rvItens);
-        btNovoItem = findViewById(R.id.btNovoItem);
-        btNovoItem.setOnClickListener(view -> abrirCadastroItem());
+        pedidoController = new PedidoController(this);
+        rvPedidos = findViewById(R.id.rvItens);
+        btNovoPedido = findViewById(R.id.btNovoItem);
+        btNovoPedido.setOnClickListener(view -> abrirCadastroPedidos());
 
-        atualizarListaItens();
+        atualizarListaPedidos();
 
     }
 
-    private void abrirCadastroItem() {
-        Intent intent = new Intent(ListaItemActivity.this,
-                CadastroItemActivity.class);
+    private void abrirCadastroPedidos() {
+        Intent intent = new Intent(ListaPedidoActivity.this,
+                CadastroPedidoVendaActivity.class);
         startActivity(intent);
     }
 
-    private void atualizarListaItens() {
-        ArrayList<Item> listaItens = itemController.retornarTodosItens();
-        ItemListAdapter adapter = new ItemListAdapter(listaItens, this);
-        rvItens.setLayoutManager(new LinearLayoutManager(this));
-        rvItens.setAdapter(adapter);
+    private void atualizarListaPedidos() {
+        ArrayList<PedidoVenda> listaPedidos = pedidoController.retornarTodosPedidos();
+        PedidoListAdapter adapter = new PedidoListAdapter(listaPedidos, this);
+        rvPedidos.setLayoutManager(new LinearLayoutManager(this));
+        rvPedidos.setAdapter(adapter);
     }
 }

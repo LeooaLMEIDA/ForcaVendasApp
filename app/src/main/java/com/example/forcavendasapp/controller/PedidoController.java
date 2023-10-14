@@ -1,6 +1,7 @@
 package com.example.forcavendasapp.controller;
 
 import android.content.Context;
+
 import com.example.forcavendasapp.dao.PedidoVendaDao;
 import com.example.forcavendasapp.model.PedidoVenda;
 
@@ -27,14 +28,14 @@ public class PedidoController {
         return PedidoVendaDao.getInstance(context).update(item);
     }
 
-    public ArrayList<PedidoVenda> retornarTodosItens() {
+    public ArrayList<PedidoVenda> retornarTodosPedidos() {
         return PedidoVendaDao.getInstance(context).getAll();
     }
 
     public PedidoVenda retornarPedido(int codigo) {
         return PedidoVendaDao.getInstance(context).getById(codigo);
     }
-    //*****PAREI AQUI
+
     public String validaPedido(String codigo, String codCliente, String condPagto,
                                String qtdParcela, String vlFrete, String qtdItens, String vlTotItens,
                                String vlTotPedido, String codEndereco) {
@@ -42,21 +43,44 @@ public class PedidoController {
 
         if (isEmpty(codigo)) {
             mensagem.append("O Código deve ser informado.\n");
-        }else {
+        } else {
             int codigoPedido = Integer.parseInt(codigo);
-            PedidoVenda itemExistente = PedidoVendaDao.getInstance(context).getById(codigoPedido);
-            if (itemExistente != null) {
+            PedidoVenda pedidoExistente = PedidoVendaDao.getInstance(context).getById(codigoPedido);
+            if (pedidoExistente != null) {
                 mensagem.append("Já existe um Pedido com o Código informado.\n");
             }
         }
-        if (isEmpty(descricao)) {
-            mensagem.append("A Descrição deve ser informada.\n");
+
+        if (isEmpty(codCliente)) {
+            mensagem.append("O Código do Cliente deve ser informado.\n");
         }
-        if (isEmpty(vlrUnit)) {
-            mensagem.append("O Valor Unitário deve ser informado.\n");
+
+        if (isEmpty(condPagto)) {
+            mensagem.append("A Condição de Pagamento deve ser informada.\n");
         }
-        if (isEmpty(unMedida)) {
-            mensagem.append("A Unidade de Medida deve ser informada.\n");
+
+        if (isEmpty(qtdParcela)) {
+            mensagem.append("A Quantidade de Parcelas deve ser informada.\n");
+        }
+
+        if (isEmpty(vlFrete)) {
+            mensagem.append("O Valor do Frete deve ser informado.\n");
+        }
+
+        if (isEmpty(qtdItens)) {
+            mensagem.append("A Quantidade de Itens deve ser informada.\n");
+        }
+
+        if (isEmpty(vlTotItens)) {
+            mensagem.append("O Valor Total dos Itens deve ser informado.\n");
+        }
+
+        if (isEmpty(vlTotPedido)) {
+            mensagem.append("O Valor Total do Pedido deve ser informado.\n");
+        }
+
+        if (isEmpty(codEndereco)) {
+            mensagem.append("O Código do Endereço deve ser informado.\n");
         }
 
         return mensagem.toString();
@@ -65,4 +89,5 @@ public class PedidoController {
     private boolean isEmpty(String value) {
         return value == null || value.trim().isEmpty();
     }
+
 }
