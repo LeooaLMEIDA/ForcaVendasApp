@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.forcavendasapp.R;
 import com.example.forcavendasapp.controller.ClienteController;
@@ -41,6 +43,8 @@ public class CadastroPedidoVendaActivity extends AppCompatActivity {
     private EditText edValorFrete;
     private EditText edQuantidade;
     private EditText edValorTotal;
+    private EditText edVlrUnit;
+    private EditText edUnMedida;
     private Button btSalvarPedidoVenda;
     private ListView lvItens;
     private PedidoController pedidoController;
@@ -66,8 +70,11 @@ public class CadastroPedidoVendaActivity extends AppCompatActivity {
         edValorFrete = findViewById(R.id.edValorFrete);
         edQuantidade = findViewById(R.id.edQuantidade);
         edValorTotal = findViewById(R.id.edValorTotal);
+        edVlrUnit = findViewById(R.id.edVlrUnit);
+        edUnMedida = findViewById(R.id.edUnMedida);
         btSalvarPedidoVenda = findViewById(R.id.btSalvarPedidoVenda);
 
+        pedidoController = new PedidoController(this);
         clienteController = new ClienteController(this);
         itemController = new ItemController(this);
 
@@ -116,6 +123,7 @@ public class CadastroPedidoVendaActivity extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     chaveSelecionada = new ArrayList<>(mapaItens.keySet()).get(i);
+                    preencheCampos(chaveSelecionada);
                 }
 
                 @Override
@@ -123,6 +131,9 @@ public class CadastroPedidoVendaActivity extends AppCompatActivity {
                 }
             });
         }
+
+        edQuantidade.setOnFocusChangeListener((view, b) -> calculaValorTotal());
+        edValorFrete.setOnFocusChangeListener((view, b) -> calculaValorTotal());
 
         rgFormasPagamentos.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.rdAvista) {
@@ -133,32 +144,112 @@ public class CadastroPedidoVendaActivity extends AppCompatActivity {
 
             } else if (checkedId == R.id.rdParcelado) {
                 condPagto = "Parcelado";
-                qtdParcelas = Integer.parseInt(edQuantidadeParcelas.getText().toString());
+                if (!edQuantidadeParcelas.getText().toString().equals("")) {
+                    qtdParcelas = Integer.parseInt(edQuantidadeParcelas.getText().toString());
+                    if (qtdParcelas < 0) {
+                        edQuantidadeParcelas.setError("Quantidade de Parcelas inválida");
+                    }
+                }
                 tvQtdParcelas.setVisibility(View.VISIBLE);
                 edQuantidadeParcelas.setVisibility(View.VISIBLE);
             }
         });
 
+        calculaValorTotal();
+
         btSalvarPedidoVenda.setOnClickListener(v -> salvarPedido());
 
     }
 
+    private void preencheCampos(int codigo) {
+        itemController = new ItemController(this);
+        Item item = itemController.retornarItem(codigo);
+        if (item != null) {
+            Log.d("PREENCHEENDERECO", "Resultado da validação: " + item);
+            edVlrUnit.setText(String.valueOf(item.getVlUnit()));
+            edUnMedida.setText(item.getUnMedida());
+        }
+    }
+
+    private void calculaValorTotal() {
+        String quantidadeText = edQuantidade.getText().toString();
+        String vlrUnitText = edVlrUnit.getText().toString();
+        String vlrFreteText = edValorFrete.getText().toString();
+
+        if (!quantidadeText.isEmpty() && !vlrUnitText.isEmpty()) {
+            int qtdItens = Integer.parseInt(quantidadeText);
+            double vlrUnit = Double.parseDouble(vlrUnitText);
+            double vlrFrete = 0;
+
+            if (!vlrFreteText.isEmpty()) {
+                vlrFrete = Double.parseDouble(vlrFreteText);
+            }
+
+            double vlrTot = qtdItens * vlrUnit;
+            vlrTot += vlrFrete;
+
+            edValorTotal.setText(String.valueOf(vlrTot));
+        } else {
+            edValorTotal.setText("0.0");
+        }
+    }
+
     private void salvarPedido() {
-//        double vlrTotItens =
-//                Integer.parseInt(edQuantidade.getText().toString())
-//                *
-//                ed;
-//        String validacao = pedidoController.validaPedido(
-//                edCodigo.getText(),
-//                String.valueOf(chaveSelecionada),
-//                condPagto,
-//                String.valueOf(qtdParcelas),
-//                edValorFrete.getText().toString(),
-//                edQuantidade.getText().toString(),
-//
-//                edValorTotal.getText().toString(),
-//
-//                )
+        String codEndereco = "";
+        double totalItens = 0;
+        totalItens = Double.parseDouble(edVlrUnit.getText().toString());
+        totalItens = totalItens * Integer.parseInt(edQuantidade.getText().toString());
+
+        Cliente cliente = clienteController.retornarCliente(chaveSelecionada);
+        if (cliente != null) {
+            codEndereco = cliente.getCodEndereco().toString();
+        }
+
+        String validacao = pedidoController.validaPedido(
+                edCodigo.getText().toString(),
+                String.valueOf(chaveSelecionada),
+                condPagto,
+                String.valueOf(qtdParcelas),
+                edValorFrete.getText().toString(),
+                edQuantidade.getText().toString(),
+                String.valueOf(totalItens),
+                edValorTotal.getText().toString(),
+                codEndereco
+                );
+
+        if (!validacao.equals("")) {
+            if (validacao.contains("Pedido") || validacao.contains("Código") ) {
+                edCodigo.setError(validacao);
+            }
+            if (validacao.contains("Quantidade")) {
+                edQuantidade.setError(validacao);
+            }
+            if (validacao.contains("Frete")) {
+                edValorFrete.setError(validacao);
+            }
+        } else {
+            if (pedidoController.salvarPedido(
+                    Integer.parseInt(edCodigo.getText().toString()),
+                    chaveSelecionada,
+                    condPagto,
+                    qtdParcelas,
+                    Double.parseDouble(edValorFrete.getText().toString()),
+                    Integer.parseInt(edQuantidade.getText().toString()),
+                    totalItens,
+                    Double.parseDouble(edValorTotal.getText().toString()),
+                    Integer.parseInt(codEndereco)
+                    ) > 0) {
+                Toast.makeText(this,
+                        "Pedido cadastrado com sucesso!",
+                        Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this,
+                        "Erro ao Pedido, verifique o LOG.",
+                        Toast.LENGTH_LONG).show();
+            }
+            voltarTelaListagem();
+        }
+
     }
 
     private void voltarTelaListagem() {

@@ -33,8 +33,8 @@ public class ClienteController {
         return ClienteDao.getInstance(context).getAll();
     }
 
-    public Cliente retornarCliente(String cpf) {
-        return ClienteDao.getInstance(context).getByCpf(cpf);
+    public Cliente retornarCliente(int codigo) {
+        return ClienteDao.getInstance(context).getById(codigo);
     }
 
     public String validaCliente(String nome, String cpf, String dtNasc, Endereco endereco) {

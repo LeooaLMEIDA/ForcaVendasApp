@@ -71,7 +71,6 @@ public class CadastroItemActivity extends AppCompatActivity {
             }
             voltarTelaListagem();
         }
-
     }
     private void voltarTelaListagem() {
         Intent intent = new Intent(CadastroItemActivity.this, ListaItemActivity.class);

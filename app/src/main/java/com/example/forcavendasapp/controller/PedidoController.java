@@ -15,8 +15,12 @@ public class PedidoController {
         this.context = context;
     }
 
-    public long salvarPedido(int codigo, String descricao, double vlrUnit, String unMedida) {
-        PedidoVenda pedidoVenda = new PedidoVenda();
+    public long salvarPedido(int codigo, int codCliente, String condPagto, int qtdParcela,
+                             double vlFrete, int qtdItens, double vlTotItens, double vlTotPedido,
+                             int codEndereco) {
+        PedidoVenda pedidoVenda = new PedidoVenda(codigo,codCliente,condPagto,qtdParcela,vlFrete,
+                qtdItens,vlTotItens,vlTotPedido,codEndereco);
+
         return PedidoVendaDao.getInstance(context).insert(pedidoVenda);
     }
 

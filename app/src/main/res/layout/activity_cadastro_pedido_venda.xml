@@ -63,6 +63,63 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:text="Quantidade:" />
+
+            <EditText
+                android:id="@+id/edQuantidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:inputType="number"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_margin="10dp"
+                    android:text="Valor Unitário:" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_margin="10dp"
+                    android:text="Unidade Medida:" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edVlrUnit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_margin="10dp"
+                    android:enabled="false"
+                    android:inputType="numberDecimal"/>
+
+                <EditText
+                    android:id="@+id/edUnMedida"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_margin="10dp"
+                    android:enabled="false"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:text="Condição Pagamento:" />
 
             <RadioGroup
@@ -77,14 +134,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="À Vista"
-                    android:checked="true"/>
+                    android:text="À Vista"/>
 
                 <RadioButton
                     android:id="@+id/rdParcelado"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:checked="true"
                     android:text="Parcelado" />
             </RadioGroup>
 
@@ -119,19 +176,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Quantidade:" />
-
-            <EditText
-                android:id="@+id/edQuantidade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:inputType="number"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:text="Valor Total:" />
 
             <EditText
@@ -139,6 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:enabled="false"
                 android:inputType="numberDecimal"/>
 
             <Button
