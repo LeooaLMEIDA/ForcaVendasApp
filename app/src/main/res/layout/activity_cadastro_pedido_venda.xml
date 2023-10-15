@@ -59,11 +59,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="185dp"
-                android:id="@+id/lvItens"/>
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,14 +69,16 @@
                 android:id="@+id/rgFormasPagamentos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <RadioButton
                     android:id="@+id/rdAvista"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="À Vista" />
+                    android:text="À Vista"
+                    android:checked="true"/>
 
                 <RadioButton
                     android:id="@+id/rdParcelado"
@@ -104,7 +101,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:inputType="number" />
-
 
             <TextView
                 android:layout_width="match_parent"

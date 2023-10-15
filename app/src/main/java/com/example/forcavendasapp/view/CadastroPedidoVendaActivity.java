@@ -22,7 +22,6 @@ import com.example.forcavendasapp.controller.ItemController;
 import com.example.forcavendasapp.controller.PedidoController;
 import com.example.forcavendasapp.model.Cliente;
 import com.example.forcavendasapp.model.Item;
-import com.example.forcavendasapp.utils.Globais;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,7 +67,6 @@ public class CadastroPedidoVendaActivity extends AppCompatActivity {
         edQuantidade = findViewById(R.id.edQuantidade);
         edValorTotal = findViewById(R.id.edValorTotal);
         btSalvarPedidoVenda = findViewById(R.id.btSalvarPedidoVenda);
-        lvItens = findViewById(R.id.lvItens);
 
         clienteController = new ClienteController(this);
         itemController = new ItemController(this);
@@ -107,10 +105,6 @@ public class CadastroPedidoVendaActivity extends AppCompatActivity {
             });
         }
 
-        if (Globais.listaItens == null) {
-            Globais.listaItens = new ArrayList<>();
-        }
-
         if (!mapaItens.isEmpty()) {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_spinner_item, new ArrayList<>(mapaItens.values()));
@@ -122,18 +116,13 @@ public class CadastroPedidoVendaActivity extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     chaveSelecionada = new ArrayList<>(mapaItens.keySet()).get(i);
-                    Globais.listaItens.add(itemController.retornarItem(chaveSelecionada));
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
-
                 }
             });
         }
-
-        System.out.println("*********************");
-        System.out.println(Globais.listaItens);
 
         rgFormasPagamentos.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.rdAvista) {

@@ -1,11 +1,8 @@
 package com.example.forcavendasapp.view;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,7 +11,6 @@ import com.example.forcavendasapp.R;
 import com.example.forcavendasapp.controller.ItemController;
 
 public class CadastroItemActivity extends AppCompatActivity {
-
     private EditText edCodigo;
     private EditText edDescricao;
     private EditText edVlrUnit;

@@ -7,7 +7,6 @@ import com.example.forcavendasapp.model.Item;
 import java.util.ArrayList;
 
 public class ItemController {
-
     private Context context;
 
     public ItemController(Context context) {
